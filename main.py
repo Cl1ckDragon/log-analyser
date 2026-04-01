@@ -5,13 +5,18 @@ def main():
             if "Failed login" in line:
                 text = line.split("from", 1)
                 ip = text[1].strip()
-                print(f"Extracted IP: '{ip}'")
+                #print(f"Extracted IP: '{ip}'")
                 
                 if ip in ip_counts:
                     ip_counts[ip] += 1
                 else:
                     ip_counts[ip] = 1
                 
-                print(ip_counts)
+        #print(ip_counts)
+
+        print("Suspicious IPs:")
+        for ip in ip_counts:
+            if ip_counts[ip] >= 3:
+                print(f"{ip} ({ip_counts[ip]} attempts)")
 
 main()
